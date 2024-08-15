@@ -1,24 +1,18 @@
 <template>
-    <div class="text-center font-sans flex flex-col gap-4  w-[450px] mx-auto rounded-lg shadow-lg p-8">
-        <h1>Logo</h1>
-        <h2 class="font-bold text-2xl">Record Here</h2>
-        <p>Press the button below to start recording. Afterwards, you will
-            have the opportunity to review your recording. If you’re happy
-            with your message, you can save, or feel free to try again.</p>
-        <div class="bg-gray-500 py-5  w-full mx-auto w-full rounded-lg">
-            <div class="mb-10 relative mt-5 flex items-center justify-center">
+    <div class="text-center w-full font-sans flex flex-col gap-4 mx-auto rounded-lg shadow-lg">
+        <div class="bg-secondary h-[509px] justify-center items-center flex flex-col w-full rounded-lg">
+            <div class="relative mt-[116px] flex items-center justify-center">
                 <div v-if="recording && !recordedAudio" class="absolute -z-1 inset-0 flex items-center justify-center">
                     <div
-                        class="absolute -z-4 w-[145px]  h-[145px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-red-500 to-transparent animate-pulse">
+                        class="absolute -z-4 h-[288px] w-[288px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-primary opacity-50 to-transparent animate-pulse">
                     </div>
                     <div
-                        class=" -z-3  absolute  w-[125px]  h-[125px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-red-500 to-transparent animate-pulse">
+                        class=" -z-3  absolute h-[258px] w-[258px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-primary opacity-70 to-transparent animate-pulse">
                     </div>
                     <div
-                        class=" -z-2 absolute  w-[95px]  h-[95px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-red-500 to-transparent animate-pulse">
+                        class=" -z-2 absolute  h-[228px] w-[228px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-primary opacity-80 to-transparent animate-pulse">
                     </div>
                 </div>
-
                 <icon-button v-if="recording && !recordedAudio" :class="buttonClass" :name="'mic'" @click="stopRecord" />
                 <icon-button v-else-if="!recording && !recordedAudio" :class="buttonClass" :name="'mic'"
                     @click="startRecord" />
@@ -26,13 +20,16 @@
                     @click="playAudio" />
                 <icon-button v-else :class="buttonClass" :name="'stop'" @click="pauseAudio" />
             </div>
-            <div v-if="recording" class="font-bold mt-2 text-2xl">{{ (recordedTime ?? '00:00') }} <span class="opacity-80">/
+            <div v-if="recording" class="font-bold  text-5xl  mt-[90px]">{{ (recordedTime ?? '00:00') }} <span
+                    class="opacity-80">/
                     00:30</span></div>
-            <div v-else-if="!recording && recordedAudio" class="font-bold text-2xl mt-2">{{ (remainingTime ?? recordTime) }}
+            <div v-else-if="!recording && recordedAudio" class="font-bold text-5xl mt-[90px] ">{{ (remainingTime ??
+                recordTime) }}
             </div>
-            <div class="text-xl font-medium">{{ instructionMessage }}</div>
+            <div :class="recording ? 'text-2xl opacity-60 mt-3' : 'text-4xl mt-[90px]'" class="font-medium">{{
+                instructionMessage }}</div>
             <div class="text-sm mt-1 text-red-400">{{ errorMessage }}</div>
-            <figure class="mt-8 hidden">
+            <figure class="hidden">
                 <audio v-on:timeupdate="onTimeUpdate" v-on:ended="pauseAudio" ref="audioPlayer" controls
                     :src="recordedAudio" type="audio/mpeg" class="mx-auto">
                     Your browser does not support the
@@ -41,9 +38,8 @@
                 <figcaption class="text-sm mt-2">Listen to your recording before submitting.</figcaption>
             </figure>
         </div>
-        <submit-button v-if="recordedAudio" @submit="sendData" :class="buttonClass"
-            class="w-full py-4 h-auto uppercase mt-0" />
-        <button v-if="recordedAudio" @click="clearAudio" class="border uppercase p-3  rounded-md">Record again</button>
+        <Button v-if="recordedAudio" @submit="sendData" class="w-full py-4 h-auto uppercase mt-0">Submit</Button>
+        <Button v-if="recordedAudio" @click="clearAudio" class="bg-secondary border-secondary">Record again</Button>
     </div>
 </template>
   
@@ -51,8 +47,8 @@
 import Service from "../api/Service";
 import Recorder from "../lib/Recorder";
 import convertTimeMMSS from "../lib/Utils";
+import Button from "./UI/Button.vue";
 import IconButton from "./IconButton.vue";
-import SubmitButton from "./SubmitButton.vue";
 
 const INSTRUCTION_MESSAGE = "Tap to record";
 const INSTRUCTION_MESSAGE_STOP = "Tap to finish recording";
@@ -78,7 +74,7 @@ export default {
     },
     components: {
         IconButton,
-        SubmitButton,
+        Button
     },
     data() {
         return {
@@ -96,7 +92,7 @@ export default {
     },
     computed: {
         buttonClass() {
-            return "mx-auto h-20 w-20 fill-current flex items-center relative z-10 justify-center cursor-pointer bg-red-600 text-white rounded-50 ";
+            return "mx-auto h-[188px] w-[188px] fill-current flex items-center relative z-10 justify-center cursor-pointer bg-primary text-white rounded-50 ";
         },
         recordedTime() {
             if (this.time && this.recorder?.duration >= this.time * 60) {

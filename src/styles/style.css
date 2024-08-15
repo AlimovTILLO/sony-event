@@ -29,6 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-height: 1500px;
     justify-content: center;
     padding-left: 1rem; /* Эквивалент px-4 */
     padding-right: 1rem; /* Эквивалент px-4 */

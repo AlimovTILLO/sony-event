@@ -11,10 +11,31 @@ export default {
         return {
             icons: {
                 download: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/><path fill="none" d="M0 0h24v24H0z"/></svg>',
-                mic: '<svg class="feather feather-mic" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="23"/><line x1="8" x2="16" y1="23" y2="23"/></svg>',
-                play: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>',
+                mic: `<svg width="41.250000" height="66.000000" viewBox="0 0 41.25 66" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path id="Vector" d="M11.78 9.5C11.78 6.98 12.71 4.56 14.37 2.78C16.03 1 18.28 0 20.62 0C22.96 0 25.21 1 26.87 2.78C28.53 4.56 29.46 6.98 29.46 9.5L29.46 31.16C29.46 33.68 28.53 36.1 26.87 37.88C25.21 39.66 22.96 40.66 20.62 40.66C18.28 40.66 16.03 39.66 14.37 37.88C12.71 36.1 11.78 33.68 11.78 31.16L11.78 9.5ZM23.57 53.11C28.48 52.34 32.97 49.71 36.21 45.68C39.46 41.65 41.25 36.49 41.25 31.16C41.25 30.32 40.93 29.52 40.38 28.92C39.83 28.33 39.08 28 38.3 28C37.52 28 36.77 28.33 36.22 28.92C35.66 29.52 35.35 30.32 35.35 31.16C35.35 35.36 33.8 39.39 31.04 42.36C28.27 45.33 24.53 47 20.62 47C16.71 47 12.97 45.33 10.2 42.36C7.44 39.39 5.89 35.36 5.89 31.16C5.89 30.32 5.58 29.52 5.02 28.92C4.47 28.33 3.72 28 2.94 28C2.16 28 1.41 28.33 0.86 28.92C0.31 29.52 0 30.32 0 31.16C-0.01 36.49 1.78 41.65 5.03 45.68C8.27 49.71 12.76 52.34 17.67 53.11L17.67 59.66L13.59 59.66C12.81 59.66 12.06 60 11.51 60.59C10.96 61.18 10.65 61.99 10.65 62.83C10.65 63.67 10.96 64.47 11.51 65.07C12.06 65.66 12.81 66 13.59 66L27.65 66C28.43 66 29.18 65.66 29.73 65.07C30.28 64.47 30.59 63.67 30.59 62.83C30.59 61.99 30.28 61.18 29.73 60.59C29.18 60 28.43 59.66 27.65 59.66L23.57 59.66L23.57 53.11Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+</svg>
+`,
+                play: `<svg width="41.251221" height="49.501587" viewBox="0 0 41.2512 49.5016" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	
+	<defs/>
+	<path id="Vector" d="M0 2.75L0 46.75C-0.01 47.24 0.13 47.72 0.37 48.14C0.62 48.56 0.98 48.91 1.4 49.15C1.83 49.39 2.31 49.51 2.8 49.5C3.29 49.49 3.77 49.35 4.19 49.09L39.94 27.09C40.34 26.84 40.67 26.5 40.9 26.09C41.13 25.68 41.25 25.22 41.25 24.75C41.25 24.28 41.13 23.81 40.9 23.4C40.67 22.99 40.34 22.65 39.94 22.4L4.19 0.4C3.77 0.15 3.29 0.01 2.8 0C2.31 -0.01 1.83 0.11 1.4 0.34C0.98 0.58 0.62 0.93 0.37 1.35C0.13 1.78 -0.01 2.26 0 2.75Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+</svg>
+`,
                 save: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>',
-                stop: '<svg class="feather feather-pause" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg"><rect height="16" width="4" x="6" y="4"/><rect height="16" width="4" x="14" y="4"/></svg>',
+                stop: `<svg width="60.000000" height="60.000000" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+		<clipPath id="clip0_334">
+			<rect id="Frame" rx="-1.250000" width="57.500000" height="57.500000" transform="translate(1.250000 1.250000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect id="Frame" rx="-1.250000" width="57.500000" height="57.500000" transform="translate(1.250000 1.250000)" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip0_334)">
+		<path id="Vector" d="M22.5 10L17.5 10C16.17 10 14.9 10.52 13.96 11.46C13.02 12.4 12.5 13.67 12.5 15L12.5 45C12.5 46.32 13.02 47.59 13.96 48.53C14.9 49.47 16.17 50 17.5 50L22.5 50C23.82 50 25.09 49.47 26.03 48.53C26.97 47.59 27.5 46.32 27.5 45L27.5 15C27.5 13.67 26.97 12.4 26.03 11.46C25.09 10.52 23.82 10 22.5 10Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M42.5 10L37.5 10C36.17 10 34.9 10.52 33.96 11.46C33.02 12.4 32.5 13.67 32.5 15L32.5 45C32.5 46.32 33.02 47.59 33.96 48.53C34.9 49.47 36.17 50 37.5 50L42.5 50C43.82 50 45.09 49.47 46.03 48.53C46.97 47.59 47.5 46.32 47.5 45L47.5 15C47.5 13.67 46.97 12.4 46.03 11.46C45.09 10.52 43.82 10 42.5 10Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>
+`,
                 volume: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/><path d="M0 0h24v24H0z" fill="none"/></svg>',
             },
         };
