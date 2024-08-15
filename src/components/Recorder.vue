@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <icon-button v-if="recording && !recordedAudio" :class="buttonClass" :name="'stop'" @click="stopRecord" />
+                <icon-button v-if="recording && !recordedAudio" :class="buttonClass" :name="'mic'" @click="stopRecord" />
                 <icon-button v-else-if="!recording && !recordedAudio" :class="buttonClass" :name="'mic'"
                     @click="startRecord" />
                 <icon-button v-else-if="!recording && recordedAudio && pause" :class="buttonClass" :name="'play'"

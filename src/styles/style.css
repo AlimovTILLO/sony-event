@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'SST', sans-serif;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+body {
+    width: 100%;
+    background-color: #000;
+    height: 100vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem; /* Эквивалент px-4 */
+    padding-right: 1rem; /* Эквивалент px-4 */
+}
