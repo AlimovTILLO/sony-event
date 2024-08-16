@@ -20,14 +20,16 @@
                     @click="playAudio" />
                 <icon-button v-else :class="buttonClass" :name="'stop'" @click="pauseAudio" />
             </div>
-            <div v-if="recording" class="font-bold text-2xl  sm:text-5xl mt-14  sm:mt-[90px]">{{ (recordedTime ?? '00:00') }} <span
-                    class="opacity-80">/
+            <div v-if="recording" class="font-bold text-2xl  sm:text-5xl mt-14  sm:mt-[90px]">{{ (recordedTime ?? '00:00')
+            }} <span class="opacity-80">/
                     00:30</span></div>
-            <div v-else-if="!recording && recordedAudio" class="font-bold text-2xl sm:text-5xl mt-10 sm:mt-[90px] ">{{ (remainingTime ??
-                recordTime) }}
+            <div v-else-if="!recording && recordedAudio" class="font-bold text-2xl sm:text-5xl mt-10 sm:mt-[90px] ">{{
+                (remainingTime ??
+                    recordTime) }}
             </div>
-            <div :class="recording ? 'text-2xl opacity-60 mt-1 sm:mt-3' : 'text-4xl mt-10 sm:mt-[90px]'" class="font-medium">{{
-                instructionMessage }}</div>
+            <div :class="recording ? 'text-2xl opacity-60 mt-1 sm:mt-3' : 'text-4xl mt-10 sm:mt-[90px]'"
+                class="font-medium">{{
+                    instructionMessage }}</div>
             <div class="text-sm mt-1 text-red-400">{{ errorMessage }}</div>
             <figure class="hidden">
                 <audio v-on:timeupdate="onTimeUpdate" v-on:ended="pauseAudio" ref="audioPlayer" controls
@@ -38,7 +40,7 @@
                 <figcaption class="text-sm mt-2">Listen to your recording before submitting.</figcaption>
             </figure>
         </div>
-        <Button v-if="recordedAudio" @submit="sendData" class="w-full py-4 h-auto uppercase mt-0">Submit</Button>
+        <Button v-if="recordedAudio" @click="sendData" class="w-full py-4 h-auto uppercase mt-0">Submit</Button>
         <Button v-if="recordedAudio" @click="clearAudio" class="bg-secondary border-secondary">Record again</Button>
     </div>
 </template>
@@ -155,6 +157,14 @@ export default {
                 this.afterRecording();
             }
         },
+        async blobToBase64(blob) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        },
         onTimeUpdate() {
             const audioElement = this.$refs.audioPlayer;
             const remainingSeconds = audioElement.duration - audioElement.currentTime;
@@ -164,20 +174,22 @@ export default {
             if (!this.recordedBlob) {
                 return;
             }
-
+            const Base64 = await this.blobToBase64(this.recordedBlob)
+            if (!Base64) return
             let result = null;
             if (this.customUpload) {
                 result = await this.customUpload(this.recordedBlob);
             } else {
-                result = await this.service.postBackend(this.recordedBlob);
+                result = await this.service.postBackend(Base64);
             }
-
-            if (result) {
+            if (result?.success) {
                 this.errorMessage = null;
                 this.successMessage = SUCCESS_MESSAGE_SUBMIT;
                 if (this.successfulUpload) {
                     this.successfulUpload();
                 }
+                localStorage.removeItem('userInfo')
+                this.$router.push('/thank');  
             } else {
                 // error uploading
                 this.successMessage = null;

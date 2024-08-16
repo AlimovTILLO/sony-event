@@ -10,7 +10,7 @@
           opportunity to review your recording. If you’re happy with your message, you can save, or feel free to try
           again.</p>
       </div>
-      <Recorder class="mt-10 sm:mt-20" :time=".5" backendEndpoint="https://your-endpoint.com/.netlify/functions/audio-message"
+      <Recorder class="mt-10 sm:mt-20" :time=".5" backendEndpoint="https://dev-api.bpcreates.com/api/process_activation"
         @start="startRecording" @stop="stopRecording" />
     </div>
   </div>

@@ -12,23 +12,23 @@
                     <div class="form-group flex flex-col sm:flex-row gap-8 sm:gap-10">
                         <div class="input-wrapper relative flex-1 items-start text-start flex flex-col">
                             <label class="opacity-60 mb-1 sm:mb-3" for="first-name">First name</label>
-                            <input class="w-full py-2 sm:py-4 pl-2 px-5 text-gray-500 rounded-lg text-lg sm:text-2xl"
-                                type="text" id="first-name" v-model="form.firstName" placeholder="First name" />
+                            <input class="w-full py-4 px-5 text-gray-500 rounded-lg text-2xl" type="text" id="first-name"
+                                v-model="form.firstName" placeholder="First name" />
                             <span v-if="errors.firstName" class="absolute -bottom-5 text-red-500 text-sm">{{
                                 errors.firstName }}</span>
                         </div>
                         <div class="input-wrapper flex-1 relative items-start flex text-start flex-col">
                             <label class="opacity-60 mb-1 sm:mb-3" for="last-name">Last name</label>
-                            <input class="w-full py-2 sm:py-4 pl-2 px-5 text-gray-500 rounded-lg text-lg sm:text-2xl"
-                                type="text" id="last-name" v-model="form.lastName" placeholder="Last name" />
+                            <input class="w-full py-4  px-5 text-gray-500 rounded-lg text-2xl" type="text" id="last-name"
+                                v-model="form.lastName" placeholder="Last name" />
                             <span v-if="errors.lastName" class="absolute -bottom-5 text-red-500 text-sm">{{ errors.lastName
                             }}</span>
                         </div>
                     </div>
                     <div
-                        class="input-wrapper text-start relative  w-full mt-5 sm:mt-10 items-start flex-[1_1_0] flex flex-col">
+                        class="input-wrapper text-start relative  w-full mt-8 sm:mt-10 items-start flex-[1_1_0] flex flex-col">
                         <label class="opacity-60 mb-1 sm:mb-3" for="email">Email</label>
-                        <input class="w-full py-2 sm:py-4 pl-2 px-5 text-gray-500 rounded-lg text-lg sm:text-2xl"
+                        <input class="w-full py-4 px-5 text-gray-500 rounded-lg text-2xl"
                             type="email" id="email" v-model="form.email" placeholder="your@email.com" />
                         <span v-if="errors.email" class="absolute -bottom-5 text-red-500 text-sm">{{ errors.email }}</span>
                     </div>
@@ -93,7 +93,8 @@ export default defineComponent({
             this.validateEmail();
 
             if (!this.errors.firstName && !this.errors.lastName && !this.errors.email) {
-                this.$router.push('/record');  // Замените '/next-route' на ваш нужный маршрут
+                this.$router.push('/record');  
+                localStorage.setItem('userInfo', JSON.stringify(this.form))
             }
         }
     },
