@@ -6,15 +6,17 @@ export default {
   theme: {
     container: {
       padding: {
-        DEFAULT: '1rem',
-        sm: '2rem',
+        DEFAULT: '10px',
+        sm: '25px',
         lg: '4rem',
         xl: '5rem',
         '2xl': '6rem',
       },
+      
       screens: {
         DEFAULT: '680px'
-      }
+      },
+      
     },
     extend: {
       colors: {

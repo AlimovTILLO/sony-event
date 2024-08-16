@@ -1,7 +1,7 @@
 <template>
     <div class="text-center w-full font-sans flex flex-col gap-4 mx-auto rounded-lg shadow-lg">
-        <div class="bg-secondary h-[509px] justify-center items-center flex flex-col w-full rounded-lg">
-            <div class="relative mt-[116px] flex items-center justify-center">
+        <div class="bg-secondary h-[400px]  sm:h-[509px] justify-center items-center flex flex-col w-full rounded-lg">
+            <div class="relative mt-7 sm:mt-[116px] flex items-center justify-center">
                 <div v-if="recording && !recordedAudio" class="absolute -z-1 inset-0 flex items-center justify-center">
                     <div
                         class="absolute -z-4 h-[288px] w-[288px] rounded-full bg-gradient-to-bl bg-gradient-to-tr from-primary opacity-50 to-transparent animate-pulse">
@@ -20,13 +20,13 @@
                     @click="playAudio" />
                 <icon-button v-else :class="buttonClass" :name="'stop'" @click="pauseAudio" />
             </div>
-            <div v-if="recording" class="font-bold  text-5xl  mt-[90px]">{{ (recordedTime ?? '00:00') }} <span
+            <div v-if="recording" class="font-bold text-2xl  sm:text-5xl mt-14  sm:mt-[90px]">{{ (recordedTime ?? '00:00') }} <span
                     class="opacity-80">/
                     00:30</span></div>
-            <div v-else-if="!recording && recordedAudio" class="font-bold text-5xl mt-[90px] ">{{ (remainingTime ??
+            <div v-else-if="!recording && recordedAudio" class="font-bold text-2xl sm:text-5xl mt-10 sm:mt-[90px] ">{{ (remainingTime ??
                 recordTime) }}
             </div>
-            <div :class="recording ? 'text-2xl opacity-60 mt-3' : 'text-4xl mt-[90px]'" class="font-medium">{{
+            <div :class="recording ? 'text-2xl opacity-60 mt-1 sm:mt-3' : 'text-4xl mt-10 sm:mt-[90px]'" class="font-medium">{{
                 instructionMessage }}</div>
             <div class="text-sm mt-1 text-red-400">{{ errorMessage }}</div>
             <figure class="hidden">
