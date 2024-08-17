@@ -3,10 +3,9 @@ export default class Service {
         this.backendEndpoint = backendEndpoint;
     }
 
-    // returns true if successfull, false if failed
     async postBackend(recorderBase) {
         const EVENT_CODE = "3LZ3B"
-        const NOW = Date.now()
+        const NOW = Math.floor(Date.now() / 1000)
         const RANDOM_NUM = Math.floor(Math.random() * 10000);
         const FILE_NAME = `${NOW}_${EVENT_CODE}_${RANDOM_NUM}.mp3`
         const USER_DATA = JSON.parse(localStorage.getItem('userInfo'))
