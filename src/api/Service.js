@@ -9,7 +9,7 @@ export default class Service {
         const RANDOM_NUM = Math.floor(Math.random() * 10000);
         const FILE_NAME = `${NOW}_${EVENT_CODE}_${RANDOM_NUM}.mp3`
         const USER_DATA = JSON.parse(localStorage.getItem('userInfo'))
-        if (!USER_DATA) return Promise.reject({ message: 'User data not found' })
+        if (!USER_DATA) return Promise.reject({code: 400})
         const data = {
             auth: {
                 agency: "fd5160347a77476186381cb31bff05ea5ce6421b",

@@ -1,5 +1,6 @@
 <template>
     <div class="text-center w-full font-sans flex flex-col gap-4 mx-auto rounded-lg shadow-lg">
+        <Loading v-if="loading" />
         <div class="bg-secondary h-[400px]  sm:h-[509px] justify-center items-center flex flex-col w-full rounded-lg">
             <div class="relative mt-7 sm:mt-[116px] flex items-center justify-center">
                 <div v-if="recording && !recordedAudio" class="absolute -z-1 inset-0 flex items-center justify-center">
@@ -39,6 +40,7 @@
                 </audio>
                 <figcaption class="text-sm mt-2">Listen to your recording before submitting.</figcaption>
             </figure>
+
         </div>
         <Button v-if="recordedAudio" @click="sendData" class="w-full py-4 h-auto uppercase mt-0">Submit</Button>
         <Button v-if="recordedAudio" @click="clearAudio" class="bg-secondary border-secondary">Record again</Button>
@@ -51,6 +53,7 @@ import Recorder from "../lib/Recorder";
 import convertTimeMMSS from "../lib/Utils";
 import Button from "./UI/Button.vue";
 import IconButton from "./IconButton.vue";
+import Loading from "./Loading.vue";
 
 const INSTRUCTION_MESSAGE = "Tap to record";
 const INSTRUCTION_MESSAGE_STOP = "Tap to finish recording";
@@ -76,7 +79,8 @@ export default {
     },
     components: {
         IconButton,
-        Button
+        Button,
+        Loading
     },
     data() {
         return {
@@ -88,6 +92,7 @@ export default {
             recordedBlob: null,
             recorder: null,
             successMessage: null,
+            loading: false,
             errorMessage: null,
             instructionMessage: INSTRUCTION_MESSAGE,
         };
@@ -171,33 +176,46 @@ export default {
             this.remainingTime = convertTimeMMSS(remainingSeconds);
         },
         async sendData() {
-            if (!this.recordedBlob) {
-                return;
-            }
-            const Base64 = await this.blobToBase64(this.recordedBlob)
-            if (!Base64) return
-            let result = null;
-            if (this.customUpload) {
-                result = await this.customUpload(this.recordedBlob);
-            } else {
-                result = await this.service.postBackend(Base64);
-            }
-            if (result?.success) {
-                this.errorMessage = null;
-                this.successMessage = SUCCESS_MESSAGE_SUBMIT;
-                if (this.successfulUpload) {
-                    this.successfulUpload();
+            try {
+                if (!this.recordedBlob) {
+                    return;
                 }
-                localStorage.removeItem('userInfo')
-                this.$router.push('/thank');  
-            } else {
-                // error uploading
-                this.successMessage = null;
-                this.errorMessage = ERROR_SUBMITTING_MESSAGE;
-                if (this.failedUpload) {
-                    this.failedUpload();
+                this.loading = true
+                const Base64 = await this.blobToBase64(this.recordedBlob)
+                if (!Base64) {
+                    this.loading = false
+                    return
                 }
+                let result = null;
+                if (this.customUpload) {
+                    result = await this.customUpload(this.recordedBlob);
+                } else {
+                    result = await this.service.postBackend(Base64);
+                }
+                if (result?.success) {
+                    this.errorMessage = null;
+                    this.successMessage = SUCCESS_MESSAGE_SUBMIT;
+                    if (this.successfulUpload) {
+                        this.successfulUpload();
+                    }
+                    localStorage.removeItem('userInfo')
+                    this.$router.push('/thank');
+                } else {
+                    // error uploading
+                    this.successMessage = null;
+                    this.errorMessage = ERROR_SUBMITTING_MESSAGE;
+                    if (this.failedUpload) {
+                        this.failedUpload();
+                    }
+                }
+                this.loading = false
+            } catch (e) {
+                if (e.code == 400) return this.$router.push('/info');
+                this.loading = false
+
             }
+
+
         },
         micFailed() {
             this.recording = false;
