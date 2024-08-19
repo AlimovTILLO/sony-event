@@ -1,7 +1,7 @@
 <template>
-    <div class="text-center w-full font-sans flex flex-col gap-4 mx-auto rounded-lg shadow-lg">
+    <div class="text-center w-full flex flex-col gap-4 mx-auto rounded-lg shadow-lg">
         <Loading v-if="loading" />
-        <div class="bg-secondary h-[400px]  sm:h-[509px] justify-center items-center flex flex-col w-full rounded-lg">
+        <div class="bg-secondary h-[400px]  sm:h-[509px] justify-center items-center flex flex-col w-full rounded-lg pb-10">
             <div class="relative mt-7 sm:mt-[116px] flex items-center justify-center">
                 <div v-if="recording && !recordedAudio" class="absolute -z-1 inset-0 flex items-center justify-center">
                     <div

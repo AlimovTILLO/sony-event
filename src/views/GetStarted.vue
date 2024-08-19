@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div class="flex flex-col  justify-between items-center py-5 sm:py-20 px-15">
+    <div class="container h-screen">
+        <div class="flex flex-col  justify-between items-center py-5  sm:pt-[60px] sm:pb-[100px] ">
             <div class="flex flex-col gap-[60px] items-center">
                 <div class="w-[134px] h-[180px]">
                     <img class="w-full" src="/png/KandoLogo.png" alt="Logo">
@@ -14,10 +14,11 @@
                     <p class="text-lg sm:text-2xl opacity-80">You’re probably already a pro at this, here are a few tips to
                         keep in
                         mind. When you’re ready, hit the button below.</p>
-                    <div class="flex flex-col gap-[30px]">
+                    <div class="flex flex-col text-text gap-[30px] ">
                         <div class="flex gap-5 sm:gap-[30px]">
                             <Button class="bg-secondary border-secondary max-w-[24px]  sm:max-w-[64px] px-6">1</Button>
-                            <p class="sm:text-2xl text-start">Be Yourself: Speak naturally, we want to hear a positive
+                            <p class="sm:text-2xl   text-start">Be Yourself: Speak naturally, we want to hear a
+                                positive
                                 message
                                 from you!</p>
                         </div>
@@ -33,7 +34,8 @@
                     </div>
                 </div>
             </div>
-            <RouterLink class="w-full mt-20 sm:mt-[222px]" to="/info"> <Button v-bind="$attrs">Ready to Record</Button></RouterLink>
+            <RouterLink class="w-full mt-20 sm:mt-[222px]" to="/info"> <Button v-bind="$attrs">Ready to Record</Button>
+            </RouterLink>
         </div>
     </div>
 </template>
